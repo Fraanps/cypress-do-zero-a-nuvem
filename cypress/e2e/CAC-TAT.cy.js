@@ -36,11 +36,11 @@ describe ('Central de Atendimento ao Cliente TAT', () => {
       .should ('have.value', ''); // verificando se o campo telefone está vazio
   });
 
-  it ('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+  it.only ('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
     cy.get ("#firstName").type ("Francilene");
     cy.get ("#lastName").type ("Silva");
     cy.get ("#email").type ("fran.gmail.com");
-    cy.get ('#phone-checkbox').click ()
+    cy.get ('input[type="checkbox"][value="phone"]').check()
     cy.get ("#open-text-area").type ("Nada a declarar!")
     cy.contains ('button', 'Enviar').click ()
 
@@ -100,7 +100,7 @@ describe ('Central de Atendimento ao Cliente TAT', () => {
       .should ('have.value', 'mentoria');
   });
 
-  it.only('seleciona um produto (Blog) por seu indice ', () => {
+  it('seleciona um produto (Blog) por seu indice ', () => {
     cy.get ('#product')
       .select (1)
       .should ('have.value', 'blog');
